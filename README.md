@@ -25,6 +25,9 @@ Los contenidos se guardan en archivos **JSON** de la carpeta `data/` (la "fuente
 Los archivos `js/*.js` son solo valores por defecto: la web carga primero el JSON y, si no está
 disponible, usa esos valores.
 
+> **Credenciales:** el archivo `admin/config.php` (usuario y hash del panel) está en `.gitignore`
+> y no se sube a Git. Crea el tuyo a partir de `admin/config.example.php`.
+
 ### Estructura
 
 ```

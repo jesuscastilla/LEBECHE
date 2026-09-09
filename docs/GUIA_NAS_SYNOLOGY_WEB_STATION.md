@@ -143,6 +143,9 @@ código.
 - **Usuario:** `lebeche`
 - **Contraseña:** la configurada en `admin/config.php` (ver "Cambiar la contraseña").
 
+> **Primera vez:** el archivo `admin/config.php` **no se sube a Git** (está en `.gitignore`).
+> Cópialo desde `admin/config.example.php`, rellena el hash de tu contraseña y súbelo al NAS.
+
 ### Permisos importantes
 
 Para que el panel pueda guardar, la carpeta `data/` debe ser **escribible por PHP**:
