@@ -1,7 +1,8 @@
 # Guía de despliegue de la web de Lebeche en un NAS Synology (Web Station)
 
-Esta web es **100 % estática** (HTML + CSS + JavaScript puro). **No necesita PHP ni base de datos**,
-así que solo hace falta un servidor web: **Web Station** de Synology es perfecto.
+La web pública es **100 % estática** (HTML + CSS + JavaScript puro). El **panel Staff opcional**
+(`admin/`) sí usa **PHP** para guardar los contenidos, pero **no necesita base de datos**.
+**Web Station** de Synology sirve ambas cosas a la vez.
 
 ---
 
@@ -21,6 +22,8 @@ así que solo hace falta un servidor web: **Web Station** de Synology es perfect
 | `index.html` | raíz de la web |
 | `css/`       | carpeta `css/` |
 | `js/`        | carpeta `js/` |
+| `data/`      | carpeta `data/` (contenidos editables) |
+| `admin/`     | carpeta `admin/` (panel Staff) |
 | `assets/`    | carpeta `assets/` |
 
 No subas `docs/`, `.git/`, `README.md` ni `.gitignore`: no se usan para servir la web.
@@ -131,8 +134,46 @@ Para publicar cambios:
 
 ---
 
+## 11. Panel Staff (edición sin código)
+
+Permite editar **programación, noticias, apps y contacto/ubicación** desde el navegador, sin tocar
+código.
+
+- **URL:** `https://pelotxo.synology.me/lebeche/admin/`
+- **Usuario:** `lebeche`
+- **Contraseña:** la configurada en `admin/config.php` (ver "Cambiar la contraseña").
+
+### Permisos importantes
+
+Para que el panel pueda guardar, la carpeta `data/` debe ser **escribible por PHP**:
+
+1. En **File Station**, clic derecho en `lebeche/data` → **Propiedades → Permisos**.
+2. Da permiso de **lectura y escritura** al grupo/usuario que ejecuta PHP (en DSM suele ser
+   `http`, o el grupo `Everyone` con lectura/escritura).
+3. Marca **Aplicar a esta carpeta, subcarpetas y archivos**.
+
+> Si al guardar ves "No se pudo escribir", es que falta este permiso de escritura en `data/`.
+
+### Cambiar la contraseña
+
+1. Genera un hash nuevo (PBKDF2-HMAC-SHA256). Con PHP puedes usar este fragmento:
+
+   ```php
+   <?php
+   $clave = 'TU_NUEVA_CONTRASENA';
+   $salt  = bin2hex(random_bytes(16));
+   echo 'STAFF_SALT = ' . $salt . "\n";
+   echo 'STAFF_HASH = ' . hash_pbkdf2('sha256', $clave, $salt, 100000) . "\n";
+   ```
+
+2. Abre `admin/config.php` y actualiza `STAFF_HASH` y `STAFF_SALT` con los valores generados.
+3. Sube el archivo actualizado al NAS.
+
+---
+
 ## Resumen de rutas
 
 - **Web en el NAS:** `/volume1/web/lebeche/`
 - **URL pública (subcarpeta):** `https://pelotxo.synology.me/lebeche/`
+- **Panel Staff:** `https://pelotxo.synology.me/lebeche/admin/`
 - **Barrioteca (ya publicada):** `https://pelotxo.synology.me/barrioteca/`

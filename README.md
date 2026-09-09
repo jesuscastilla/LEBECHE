@@ -12,8 +12,18 @@ y el índice de los proyectos digitales que impulsa.
 ## La web
 
 Web estática (HTML + CSS + JavaScript puro, sin frameworks ni CDN de scripts) con el tema visual
-de la Barrioteca y la identidad de Lebeche. Secciones: asociación, noticias, aplicaciones,
-Barrioteca Acalencá, ubicación y contacto.
+de la Barrioteca y la identidad de Lebeche. Secciones: asociación, programación, noticias,
+aplicaciones, Barrioteca Acalencá, ubicación y contacto.
+
+### Cómo editar sin saber código
+
+La web incluye un **panel Staff** privado (en `admin/`, con usuario y contraseña) desde el que se
+pueden editar de forma visual la **programación**, las **noticias**, las **apps** y el
+**contacto/ubicación**. Requiere PHP (Web Station). Ver `docs/GUIA_NAS_SYNOLOGY_WEB_STATION.md`.
+
+Los contenidos se guardan en archivos **JSON** de la carpeta `data/` (la "fuente de verdad").
+Los archivos `js/*.js` son solo valores por defecto: la web carga primero el JSON y, si no está
+disponible, usa esos valores.
 
 ### Estructura
 
@@ -21,20 +31,17 @@ Barrioteca Acalencá, ubicación y contacto.
 LEBECHE/
 ├── index.html                     # Página principal (secciones ancla)
 ├── css/styles.css                 # Estilos (tema Barrioteca + identidad Lebeche)
-├── js/datos.js                    # ★ Dirección, redes y contacto
-├── js/apps.js                     # ★ Aplicaciones
-├── js/noticias.js                 # ★ Noticias
-├── js/main.js                     # Menú móvil, render, animaciones, año
+├── js/datos.js                    # Valores por defecto (dirección, redes, contacto)
+├── js/apps.js                     # Valores por defecto (aplicaciones)
+├── js/noticias.js                 # Valores por defecto (noticias)
+├── js/programacion.js             # Valores por defecto (programación)
+├── js/main.js                     # Menú móvil, carga de datos, render, animaciones
+├── data/                          # ★ Contenidos editables (JSON) — se editan desde el panel
+├── admin/                         # Panel Staff (PHP): login y edición visual
 ├── assets/                        # Logos y favicon
 └── docs/
     └── GUIA_NAS_SYNOLOGY_WEB_STATION.md   # Guía de despliegue en el NAS
 ```
-
-### Cómo editar
-
-- **Noticias** → `js/noticias.js`
-- **Aplicaciones** → `js/apps.js`
-- **Dirección, redes y contacto** → `js/datos.js`
 
 ### Ver en local
 
@@ -45,6 +52,9 @@ python -m http.server
 ```
 
 y abre `http://localhost:8000`.
+
+> El panel Staff (`admin/`) necesita PHP. Para probarlo en local:
+> `php -S localhost:8000` desde la carpeta, y abre `http://localhost:8000/admin/`.
 
 ### Desplegar en el NAS
 

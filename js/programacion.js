@@ -1,0 +1,33 @@
+// Programación de Lebeche.
+// - "viernes": nota fija sobre la apertura de los viernes en la Acalencá.
+// - "proximos": lista de eventos de los próximos días (sustituye por tu programación real).
+//   fecha: formato "AAAA-MM-DD" · hora: "HH:MM" · etiqueta: tipo de actividad.
+window.PROGRAMACION_LEBECHE = {
+  viernes: {
+    titulo: "Viernes de apertura en la Acalencá",
+    texto: "Cada viernes abrimos el espacio vecinal de la Acalencá, en Salobreña, con actividades y talleres diferentes para el barrio. ¡Acércate!"
+  },
+  proximos: [
+    {
+      fecha: "2026-09-18",
+      hora: "18:00",
+      titulo: "Taller de escritura creativa",
+      etiqueta: "Taller",
+      texto: "Un espacio para escribir, compartir relatos y pasar un buen rato en compañía."
+    },
+    {
+      fecha: "2026-09-25",
+      hora: "11:00",
+      titulo: "Mercadillo de intercambio",
+      etiqueta: "Actividad",
+      texto: "Trae cosas que ya no uses y llévate otras que te sirvan. Reutilizar es cuidar."
+    },
+    {
+      fecha: "2026-10-02",
+      hora: "19:00",
+      titulo: "Cineclub en la Acalencá",
+      etiqueta: "Proyección",
+      texto: "Proyección y coloquio abiertos a todas las vecinas."
+    }
+  ]
+};

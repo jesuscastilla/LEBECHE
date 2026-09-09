@@ -155,6 +155,26 @@ h1,h2,h3,h4{font-family:var(--fuente-titulos);line-height:1.15;font-weight:700;c
 .contacto__valor{font-weight:600;color:var(--azul-profundo)}
 .contacto__desc{color:var(--tinta-suave);font-size:.92rem}
 
+/* Programación */
+.apertura{display:flex;gap:18px;align-items:flex-start;background:linear-gradient(135deg,var(--azul-claro),#F2FAFE);border:1px solid #CBE7F3;border-radius:var(--radio-xl);padding:26px 28px;margin-bottom:30px}
+.apertura__icono{font-size:2rem;line-height:1}
+.apertura__cuerpo h3{font-size:1.25rem;margin-bottom:6px}
+.apertura__cuerpo p{color:var(--tinta-suave)}
+
+.programacion{display:flex;flex-direction:column;gap:16px}
+.evento{display:flex;gap:20px;align-items:stretch;background:var(--blanco);border:1px solid var(--borde);border-radius:var(--radio-xl);padding:22px 24px;box-shadow:var(--sombra-suave);transition:transform .25s ease,box-shadow .25s ease}
+.evento:hover{transform:translateY(-3px);box-shadow:var(--sombra)}
+.evento__fecha{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:68px;background:var(--azul-claro);border-radius:16px;padding:12px 10px}
+.evento__dia{font-family:var(--fuente-titulos);font-weight:700;font-size:1.7rem;line-height:1;color:var(--azul-profundo)}
+.evento__mes{font-size:.72rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--azul-profundo);margin-top:4px}
+.evento__cuerpo{display:flex;flex-direction:column;gap:8px}
+.evento__meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.evento__etiqueta{font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--azul-profundo);background:var(--azul-claro);padding:4px 11px;border-radius:999px}
+.evento__hora{font-size:.85rem;font-weight:700;color:var(--ambar-oscuro);font-variant-numeric:tabular-nums}
+.evento__titulo{font-size:1.25rem}
+.evento__texto{color:var(--tinta-suave);font-size:.95rem}
+.programacion__vacia{background:var(--blanco);border:1px dashed var(--borde);border-radius:var(--radio-xl);padding:32px;text-align:center;color:var(--tinta-suave)}
+
 /* Pie */
 .pie{background:linear-gradient(160deg,var(--azul-noche),var(--azul-marino));color:#CBE3EE;padding:56px 0 0}
 .pie__interior{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;padding-bottom:38px}

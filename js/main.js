@@ -24,7 +24,7 @@
     });
   }
 
-  // ---- Sombra en la cabecera al hacer scroll ----
+  // ---- Sombra en la cabecera ----
   var cabecera = document.getElementById("cabecera");
   function actualizarCabecera() {
     if (cabecera) cabecera.classList.toggle("compacta", window.scrollY > 10);
@@ -39,11 +39,14 @@
     return el;
   }
 
-  var formatoFecha = new Intl.DateTimeFormat("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric"
-  });
+  function setText(id, texto) {
+    var el = document.getElementById(id);
+    if (el && texto) el.textContent = texto;
+  }
+
+  var formatoFecha = new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "long", year: "numeric" });
+  var formatoDia = new Intl.DateTimeFormat("es-ES", { day: "numeric" });
+  var formatoMes = new Intl.DateTimeFormat("es-ES", { month: "short" });
 
   // ---- Noticias ----
   function crearNoticia(n) {
@@ -71,16 +74,16 @@
     return tarjeta;
   }
 
-  var listaNoticias = document.getElementById("listaNoticias");
-  if (listaNoticias) {
-    var noticias = (window.NOTICIAS_LEBECHE || []).slice();
-    noticias.sort(function (a, b) {
+  function renderNoticias(noticias) {
+    var lista = document.getElementById("listaNoticias");
+    if (!lista) return;
+    lista.innerHTML = "";
+    var datos = (noticias || []).slice();
+    datos.sort(function (a, b) {
       if (!!a.destacada !== !!b.destacada) return (b.destacada ? 1 : 0) - (a.destacada ? 1 : 0);
       return new Date(b.fecha) - new Date(a.fecha);
     });
-    noticias.forEach(function (n) {
-      listaNoticias.appendChild(crearNoticia(n));
-    });
+    datos.forEach(function (n) { lista.appendChild(crearNoticia(n)); });
   }
 
   // ---- Aplicaciones ----
@@ -129,16 +132,80 @@
     return tarjeta;
   }
 
-  var listaApps = document.getElementById("listaApps");
-  if (listaApps) {
-    (window.APPS_LEBECHE || []).forEach(function (app) {
-      listaApps.appendChild(crearApp(app));
-    });
+  function renderApps(apps) {
+    var lista = document.getElementById("listaApps");
+    if (!lista) return;
+    lista.innerHTML = "";
+    (apps || []).forEach(function (app) { lista.appendChild(crearApp(app)); });
+  }
+
+  // ---- Programación ----
+  function crearEvento(e) {
+    var art = crear("article", "evento");
+
+    var fecha = crear("div", "evento__fecha");
+    var dia = crear("span", "evento__dia");
+    dia.textContent = formatoDia.format(new Date(e.fecha));
+    var mes = crear("span", "evento__mes");
+    mes.textContent = formatoMes.format(new Date(e.fecha));
+    fecha.appendChild(dia);
+    fecha.appendChild(mes);
+
+    var cuerpo = crear("div", "evento__cuerpo");
+    var meta = crear("div", "evento__meta");
+    if (e.etiqueta) {
+      var et = crear("span", "evento__etiqueta");
+      et.textContent = e.etiqueta;
+      meta.appendChild(et);
+    }
+    if (e.hora) {
+      var hora = crear("span", "evento__hora");
+      hora.textContent = e.hora;
+      meta.appendChild(hora);
+    }
+    var titulo = crear("h3", "evento__titulo");
+    titulo.textContent = e.titulo;
+    var texto = crear("p", "evento__texto");
+    texto.textContent = e.texto;
+
+    cuerpo.appendChild(meta);
+    cuerpo.appendChild(titulo);
+    cuerpo.appendChild(texto);
+    art.appendChild(fecha);
+    art.appendChild(cuerpo);
+    return art;
+  }
+
+  function renderProgramacion(programacion) {
+    var v = programacion && programacion.viernes;
+    if (v) {
+      setText("viernesTitulo", v.titulo);
+      setText("viernesTexto", v.texto);
+    }
+
+    var lista = document.getElementById("listaProgramacion");
+    if (!lista) return;
+    lista.innerHTML = "";
+
+    var eventos = (programacion && programacion.proximos) || [];
+    var hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    var proximos = eventos
+      .filter(function (e) { return new Date(e.fecha) >= hoy; })
+      .sort(function (a, b) { return new Date(a.fecha) - new Date(b.fecha); });
+
+    if (!proximos.length) {
+      var vacio = crear("div", "programacion__vacia");
+      vacio.textContent = "Próximamente publicaremos la programación.";
+      lista.appendChild(vacio);
+      return;
+    }
+
+    proximos.forEach(function (e) { lista.appendChild(crearEvento(e)); });
   }
 
   // ---- Contacto y ubicación ----
-  var datos = window.DATOS_LEBECHE || {};
-
   function crearContacto(c) {
     var tarjeta = crear("a", "contacto__tarjeta");
     tarjeta.href = c.url || "#";
@@ -162,15 +229,16 @@
     return tarjeta;
   }
 
-  var listaContacto = document.getElementById("listaContacto");
-  if (listaContacto) {
-    (datos.contacto || []).forEach(function (c) {
-      listaContacto.appendChild(crearContacto(c));
-    });
-  }
+  function renderContactoUbicacion(datos) {
+    var lista = document.getElementById("listaContacto");
+    if (lista) {
+      lista.innerHTML = "";
+      (datos.contacto || []).forEach(function (c) { lista.appendChild(crearContacto(c)); });
+    }
 
-  var ubi = datos.ubicacion;
-  if (ubi) {
+    var ubi = datos.ubicacion;
+    if (!ubi) return;
+
     var direccionTexto = document.getElementById("direccionTexto");
     if (direccionTexto) {
       direccionTexto.textContent = [
@@ -182,9 +250,7 @@
     }
 
     var ubicacionNota = document.getElementById("ubicacionNota");
-    if (ubicacionNota && ubi.nota) {
-      ubicacionNota.textContent = ubi.nota;
-    }
+    if (ubicacionNota && ubi.nota) ubicacionNota.textContent = ubi.nota;
 
     if (ubi.consultaMapa) {
       var q = encodeURIComponent(ubi.consultaMapa);
@@ -192,11 +258,28 @@
       if (mapa) mapa.src = "https://www.google.com/maps?q=" + q + "&output=embed&z=16";
 
       var enlaceMapa = document.getElementById("enlaceMapa");
-      if (enlaceMapa) {
-        enlaceMapa.href = "https://www.google.com/maps/search/?api=1&query=" + q;
-      }
+      if (enlaceMapa) enlaceMapa.href = "https://www.google.com/maps/search/?api=1&query=" + q;
     }
   }
+
+  // ---- Carga de datos (JSON) con respaldo a los valores por defecto ----
+  function cargar(tipo, porDefecto) {
+    return fetch("data/" + tipo + ".json", { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error("no ok"); return r.json(); })
+      .catch(function () { return porDefecto; });
+  }
+
+  Promise.all([
+    cargar("programacion", window.PROGRAMACION_LEBECHE || null),
+    cargar("noticias", window.NOTICIAS_LEBECHE || []),
+    cargar("apps", window.APPS_LEBECHE || []),
+    cargar("datos", window.DATOS_LEBECHE || {})
+  ]).then(function (r) {
+    renderProgramacion(r[0]);
+    renderNoticias(r[1]);
+    renderApps(r[2]);
+    renderContactoUbicacion(r[3]);
+  });
 
   // ---- Año actual en el pie ----
   var anio = document.getElementById("anio");
@@ -219,4 +302,5 @@
     });
   }
 })();
+
 
