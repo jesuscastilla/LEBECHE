@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lebeche · Asociación cultural y vecinal de Salobreña</title>
+<meta name="description" content="Lebeche es la asociación cultural y vecinal de Salobreña (Granada). Impulsamos la Barrioteca Acalencá, el Calendario Lebeche y otras aplicaciones libres para el barrio.">
+<meta name="theme-color" content="#072B3C">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera" id="cabecera">
+  <div class="contenedor cabecera__interior">
+    <a class="marca" href="#inicio" aria-label="Lebeche, volver al inicio">
+      <img src="assets/lebeche-logo-azul.png" width="42" height="42" alt="" class="marca__logo">
+      <span class="marca__texto">Lebeche</span>
+    </a>
+    <button class="menu__boton" id="menuBoton" aria-expanded="false" aria-controls="menuNav" aria-label="Abrir el menú de navegación">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="menuNav" aria-label="Navegación principal">
+      <a href="#asociacion">Asociación</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#apps">Apps</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero" id="inicio">
+    <div class="contenedor hero__interior">
+      <img src="assets/lebeche-logo-azul.png" width="128" height="128" alt="Logotipo de Lebeche, asociación cultural y vecinal de Salobreña" class="hero__logo" fetchpriority="high">
+      <p class="hero__sobre">Asociación cultural y vecinal de Salobreña</p>
+      <h1 class="hero__titulo">Lebeche</h1>
+      <p class="hero__lema">Cultura, barrio y memoria compartida</p>
+      <p class="hero__texto">
+        Somos una asociación vecinal que pone en marcha proyectos para el barrio:
+        una biblioteca autogestionada, una agenda común y herramientas digitales libres.
+        Todo hecho en casa, sin publicidad y con los datos en Salobreña.
+      </p>
+      <div class="hero__acciones">
+        <a href="#noticias" class="boton boton--ambar">Ver las noticias</a>
+        <a href="#asociacion" class="boton boton--fantasma">Conoce la asociación</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="asociacion">
+    <div class="contenedor">
+      <p class="etiqueta">La asociación</p>
+      <h2 class="titulo">Un proyecto <em>de barrio</em></h2>
+      <p class="intro">
+        Lebeche es una asociación cultural y vecinal de Salobreña (Granada). Trabajamos de
+        forma horizontal para cuidar el barrio, la cultura y la memoria colectiva, y para
+        que la tecnología esté al servicio de las vecinas, no al revés.
+      </p>
+      <div class="columnas">
+        <article class="tarjeta tarjeta--valor">
+          <span class="tarjeta__icono" aria-hidden="true">🏘️</span>
+          <h3>Vecinal y cercana</h3>
+          <p>Nos encontramos en el espacio vecinal de la Acalencá, donde late la vida del barrio: la Barrioteca, las actividades y las quedadas.</p>
+        </article>
+        <article class="tarjeta tarjeta--valor">
+          <span class="tarjeta__icono" aria-hidden="true">📚</span>
+          <h3>Cultura compartida</h3>
+          <p>Impulsamos la Barrioteca Acalencá, una biblioteca autogestionada donde cualquiera puede asociarse y llevarse libros en préstamo.</p>
+        </article>
+        <article class="tarjeta tarjeta--valor">
+          <span class="tarjeta__icono" aria-hidden="true">🌱</span>
+          <h3>Libre y hecha a mano</h3>
+          <p>Nuestras aplicaciones son software libre, sin publicidad ni cesión de datos a terceros. Las gestionamos nosotras, en nuestro propio servidor.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" id="noticias">
+    <div class="contenedor">
+      <p class="etiqueta">Noticias</p>
+      <h2 class="titulo">Lo último <em>de Lebeche</em></h2>
+      <p class="intro">Novedades de la asociación, de la Barrioteca y de nuestras aplicaciones.</p>
+      <div class="noticias" id="listaNoticias"></div>
+    </div>
+  </section>
+
+  <section class="seccion" id="apps">
+    <div class="contenedor">
+      <p class="etiqueta">Nuestras apps</p>
+      <h2 class="titulo">Aplicaciones <em>de la asociación</em></h2>
+      <p class="intro">Herramientas sencillas para el día a día. Las que están en preparación se irán activando poco a poco.</p>
+      <div class="apps" id="listaApps"></div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" id="barrioteca">
+    <div class="contenedor">
+      <p class="etiqueta">Proyecto destacado</p>
+      <h2 class="titulo">Barrioteca <em>Acalencá</em></h2>
+      <p class="intro">La biblioteca vecinal autogestionada de la Acalencá. Cualquier vecina puede asociarse, llevarse libros en préstamo y devolverlos cuando termine de leerlos.</p>
+
+      <div class="pasos">
+        <div class="paso"><span class="paso__num">1</span><h3>Hazte socia</h3><p>Pide tu número de socia en la asociación. Con él entrarás en la aplicación.</p></div>
+        <div class="paso"><span class="paso__num">2</span><h3>Identifícate</h3><p>Abre la aplicación desde tu móvil y escribe tu número de socia.</p></div>
+        <div class="paso"><span class="paso__num">3</span><h3>Llévate un libro</h3><p>Escanea el código de barras del libro con la cámara y el préstamo queda registrado.</p></div>
+        <div class="paso"><span class="paso__num">4</span><h3>Devuélvelo</h3><p>Al terminar, escanea de nuevo el mismo código y el libro vuelve a estar disponible.</p></div>
+        <div class="paso"><span class="paso__num">5</span><h3>Consulta el catálogo</h3><p>Busca libros por título, autora o ISBN y mira cuáles están disponibles.</p></div>
+      </div>
+
+      <div class="instalacion">
+        <h3>Cómo tenerla en el móvil</h3>
+        <p><strong>Android:</strong> abre Google Play, busca «Barrioteca Acalencá» y pulsa «Instalar».</p>
+        <p><strong>iPhone / iPad:</strong> abre la App Store, busca «Barrioteca Acalencá» y pulsa «Obtener».</p>
+        <p><strong>Navegador:</strong> también puedes usarla desde la web sin instalar nada.</p>
+        <a href="https://pelotxo.synology.me/barrioteca/" target="_blank" rel="noopener" class="boton boton--azul">Abrir la Barrioteca ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="ubicacion">
+    <div class="contenedor">
+      <p class="etiqueta">Ubicación</p>
+      <h2 class="titulo">Dónde <em>estamos</em></h2>
+      <p class="intro">Nuestra sede y la Barrioteca Acalencá están en el espacio vecinal de la Acalencá, en Salobreña.</p>
+      <div class="ubicacion">
+        <div class="ubicacion__datos">
+          <h3>Dirección</h3>
+          <p id="direccionTexto" class="ubicacion__direccion"></p>
+          <p class="ubicacion__nota" id="ubicacionNota"></p>
+          <a class="boton boton--azul" id="enlaceMapa" href="#" target="_blank" rel="noopener">Cómo llegar ↗</a>
+        </div>
+        <div class="ubicacion__mapa">
+          <iframe id="mapa" title="Mapa de la ubicación de Lebeche en Salobreña" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" id="contacto">
+    <div class="contenedor">
+      <p class="etiqueta">Contacto</p>
+      <h2 class="titulo">Habla con <em>nosotras</em></h2>
+      <p class="intro">Escríbenos por Instagram o acércate al espacio vecinal. Estaremos encantadas de contarte más.</p>
+      <div class="contacto" id="listaContacto"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie" id="creditos">
+  <div class="contenedor pie__interior">
+    <div class="pie__col pie__col--marca">
+      <img src="assets/lebeche-logo-azul.png" width="64" height="64" alt="Logotipo de Lebeche" class="pie__logo">
+      <p><strong>Lebeche</strong> es una asociación cultural y vecinal de Salobreña (Granada). Cultura, barrio y memoria compartida.</p>
+    </div>
+    <div class="pie__col">
+      <h4>Enlaces</h4>
+      <a href="https://www.instagram.com/lebeche.cultura/" target="_blank" rel="noopener">Instagram @lebeche.cultura ↗</a>
+      <a href="https://www.instagram.com/acalenca/" target="_blank" rel="noopener">Instagram @acalenca ↗</a>
+      <a href="https://github.com/jesuscastilla/LEBECHE" target="_blank" rel="noopener">Código de esta web ↗</a>
+    </div>
+    <div class="pie__col">
+      <h4>Créditos</h4>
+      <p>Proyecto impulsado por <strong>Lebeche</strong>.<br>Diseño y desarrollo: <strong>Pelotxo</strong> (@pelochochi).</p>
+    </div>
+  </div>
+  <div class="pie__fin">
+    <div class="contenedor">© <span id="anio"></span> Lebeche · Software libre (GPL-3.0)</div>
+  </div>
+</footer>
+
+<script src="js/datos.js"></script>
+<script src="js/apps.js"></script>
+<script src="js/noticias.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+

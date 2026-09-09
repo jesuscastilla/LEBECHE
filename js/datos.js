@@ -1,0 +1,34 @@
+// Datos editables de la asociación Lebeche.
+// Cambia aquí la dirección, las redes y los textos de ubicación/contacto sin tocar el HTML.
+window.DATOS_LEBECHE = {
+  asociacion: {
+    nombre: "Lebeche",
+    tipo: "Asociación cultural y vecinal",
+    localidad: "Salobreña (Granada)"
+  },
+  ubicacion: {
+    direccion: "Calle Santa Cruz, 8",
+    localidad: "Salobreña",
+    provincia: "Granada",
+    cp: "18680",
+    pais: "España",
+    consultaMapa: "Calle Santa Cruz 8, 18680 Salobreña, Granada, España",
+    nota: "La Barrioteca Acalencá se encuentra en el espacio vecinal de la Acalencá, en Salobreña."
+  },
+  contacto: [
+    {
+      icono: "📸",
+      nombre: "Instagram de la asociación",
+      valor: "@lebeche.cultura",
+      url: "https://www.instagram.com/lebeche.cultura/",
+      desc: "Novedades y actividad de Lebeche."
+    },
+    {
+      icono: "🏘️",
+      nombre: "Espacio vecinal La Acalencá",
+      valor: "@acalenca",
+      url: "https://www.instagram.com/acalenca/",
+      desc: "Nuestro espacio vecinal, donde también vive la Barrioteca."
+    }
+  ]
+};

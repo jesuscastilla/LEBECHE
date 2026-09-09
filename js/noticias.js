@@ -1,0 +1,34 @@
+// Noticias de Lebeche.
+// Para añadir una noticia, copia un bloque { ... } y cambia los datos.
+//   destacada: true la muestra con el borde azul y la coloca la primera.
+//   fecha: formato "AAAA-MM-DD" (se muestra formateada automáticamente).
+window.NOTICIAS_LEBECHE = [
+  {
+    titulo: "Estrenamos la nueva web de Lebeche",
+    categoria: "Lebeche",
+    fecha: "2026-09-10",
+    texto: "A partir de ahora, las novedades, la ubicación y el contacto de la asociación están en un único sitio, fácil de consultar desde el móvil.",
+    destacada: true
+  },
+  {
+    titulo: "Ya puedes llevarte un libro de la Barrioteca Acalencá",
+    categoria: "Barrioteca",
+    fecha: "2026-08-28",
+    texto: "La biblioteca vecinal está en marcha: hazte socia, escanea un libro con el móvil y llévatelo en préstamo. Disponible en web, Android e iPhone.",
+    destacada: false
+  },
+  {
+    titulo: "Calendario Lebeche, en preparación",
+    categoria: "Apps",
+    fecha: "2026-09-09",
+    texto: "Estamos preparando una agenda común de la asociación con recordatorios, sincronizada con el calendario del móvil.",
+    destacada: false
+  },
+  {
+    titulo: "Tablón de anuncios y archivo multimedia, próximamente",
+    categoria: "Apps",
+    fecha: "2026-09-09",
+    texto: "Pronto podrás ver los avisos de la asociación y acceder a fotos, carteles y documentos desde el móvil.",
+    destacada: false
+  }
+];

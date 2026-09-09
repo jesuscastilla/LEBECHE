@@ -1,10 +1,60 @@
-# Portfolio — Proyectos Lebeche
+# Lebeche — Web oficial e índice de proyectos
 
-Aplicaciones y servicios digitales de la **Asociación Lebeche** (Salobreña, Granada).
+Sitio web de la **Asociación Lebeche**, asociación cultural y vecinal de Salobreña (Granada),
+y el índice de los proyectos digitales que impulsa.
 
 > Infraestructura: NAS Synology con Web Station (Nginx + PHP 8 + MariaDB).
 > Dominio público: `pelotxo.synology.me`.
 > Logos en `G:\GITHUB\LOGOS\`.
+
+---
+
+## La web
+
+Web estática (HTML + CSS + JavaScript puro, sin frameworks ni CDN de scripts) con el tema visual
+de la Barrioteca y la identidad de Lebeche. Secciones: asociación, noticias, aplicaciones,
+Barrioteca Acalencá, ubicación y contacto.
+
+### Estructura
+
+```
+LEBECHE/
+├── index.html                     # Página principal (secciones ancla)
+├── css/styles.css                 # Estilos (tema Barrioteca + identidad Lebeche)
+├── js/datos.js                    # ★ Dirección, redes y contacto
+├── js/apps.js                     # ★ Aplicaciones
+├── js/noticias.js                 # ★ Noticias
+├── js/main.js                     # Menú móvil, render, animaciones, año
+├── assets/                        # Logos y favicon
+└── docs/
+    └── GUIA_NAS_SYNOLOGY_WEB_STATION.md   # Guía de despliegue en el NAS
+```
+
+### Cómo editar
+
+- **Noticias** → `js/noticias.js`
+- **Aplicaciones** → `js/apps.js`
+- **Dirección, redes y contacto** → `js/datos.js`
+
+### Ver en local
+
+Abre `index.html` con el navegador, o lanza un servidor:
+
+```bash
+python -m http.server
+```
+
+y abre `http://localhost:8000`.
+
+### Desplegar en el NAS
+
+Consulta `docs/GUIA_NAS_SYNOLOGY_WEB_STATION.md`.
+
+---
+
+## Proyectos Lebeche
+
+Aplicaciones y servicios digitales de la **Asociación Lebeche** (Salobreña, Granada).
 
 ---
 
