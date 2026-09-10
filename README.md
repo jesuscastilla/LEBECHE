@@ -6,6 +6,7 @@ y el índice de los proyectos digitales que impulsa.
 > Infraestructura: NAS Synology con Web Station (Nginx + PHP 8 + MariaDB).
 > Dominio público: `lebeche.pelotxo.synology.me`.
 > Logos en `G:\GITHUB\LOGOS\`.
+> SSH al NAS: `192.168.50.93` (o `192.168.50.94`), puerto 22 · Archivos SMB: `\\192.168.50.94\`.
 
 ---
 
@@ -95,17 +96,18 @@ código de barras.
 |---|---|---|---|
 | Web (PWA) | React 19 + Vite + Tailwind + TypeScript | `g:\GITHUB\PWA\` | activa |
 | Backend | SLiMS 9.7.2 (PHP + MariaDB) | `g:\GITHUB\SLiMS\` | activa |
-| Android (TWA) | Android (Trusted Web Activity) | `g:\GITHUB\barrioteca-android-app\` | activa |
+| Android | Kotlin + Jetpack Compose (nativa) | `g:\GITHUB\barrioteca-android-app-v2\` | activa |
 | iOS | Swift | `g:\GITHUB\barrioteca-ios\` | activa |
 
 - **URL pública:** `https://pelotxo.synology.me/barrioteca/`
+- **Acceso sin app**: la web (PWA) sigue siendo la vía principal para quien no usa smartphone y para iOS.
 
 ---
 
 ## Digitalización Lebeche — Web hub informativo
 
 - **Tipo:** web estática (HTML + CSS + JS, sin CDN)
-- **Repositorio local:** `g:\GITHUB\digitalizacion-lebeche\`
+- **Repositorio local:** `g:\GITHUB\LEBECHE\` (web oficial; la carpeta `digitalizacion-lebeche\` ya no está en local)
 - **Descripción:** presenta a las socias y vecinas las aplicaciones de la asociación.
 - **Identidad:** paleta azul Lebeche `#8FD6EF` + acento ámbar `#E8A33D`.
 

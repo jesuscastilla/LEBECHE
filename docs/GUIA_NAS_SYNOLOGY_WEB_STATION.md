@@ -76,7 +76,7 @@ Elige una de estas dos vías:
 ### Vía B — SFTP / SCP (desde un ordenador)
 
 ```bash
-scp -r index.html css js assets usuario@TU_NAS:/volume1/web/lebeche/
+scp -r index.html css js assets pelotxo@192.168.50.93:/volume1/web/lebeche/
 ```
 
 ---
@@ -180,3 +180,5 @@ Para que el panel pueda guardar, la carpeta `data/` debe ser **escribible por PH
 - **URL pública (subcarpeta):** `https://pelotxo.synology.me/lebeche/`
 - **Panel Staff:** `https://pelotxo.synology.me/lebeche/admin/`
 - **Barrioteca (ya publicada):** `https://pelotxo.synology.me/barrioteca/`
+- **SSH al NAS:** `192.168.50.93` (o `192.168.50.94`), puerto **22**
+- **Archivos del NAS (SMB):** `\\192.168.50.94\`
