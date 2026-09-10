@@ -4,7 +4,7 @@ Sitio web de la **Asociación Lebeche**, asociación cultural y vecinal de Salob
 y el índice de los proyectos digitales que impulsa.
 
 > Infraestructura: NAS Synology con Web Station (Nginx + PHP 8 + MariaDB).
-> Dominio público: `pelotxo.synology.me`.
+> Dominio público: `lebeche.pelotxo.synology.me`.
 > Logos en `G:\GITHUB\LOGOS\`.
 
 ---
