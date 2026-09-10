@@ -116,7 +116,7 @@ scp -r index.html css js assets usuario@TU_NAS:/volume1/web/lebeche/
 ## 9. Solución de problemas
 
 | Problema | Posible causa y solución |
-|----------|--------------------------|
+| ---------- | -------------------------- |
 | Error 404 | Comprueba mayúsculas/minúsculas y que `index.html` esté en la raíz de `lebeche`. |
 | Imágenes o logo rotos | La carpeta `assets/` no se subió completa. Vuelve a subirla. |
 | El mapa no carga | El mapa es un iframe de Google Maps; requiere conexión a internet. |
