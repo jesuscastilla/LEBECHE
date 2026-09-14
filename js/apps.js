@@ -10,15 +10,7 @@ window.APPS_LEBECHE = [
     descripcion: "La biblioteca vecinal autogestionada: consulta el catálogo, llévate libros en préstamo y devuélvelos escaneando su código con el móvil.",
     estado: "activa",
     url: "https://pelotxo.synology.me/barrioteca/",
-    etiquetas: ["Web", "Android", "iPhone/iPad"]
-  },
-  {
-    nombre: "Calendario Lebeche",
-    emoji: "📅",
-    descripcion: "Agenda común de la asociación con recordatorios, sincronizada con el calendario del móvil. En preparación.",
-    estado: "proximamente",
-    url: "",
-    etiquetas: ["Android"]
+    etiquetas: ["Web", "iPhone/iPad"]
   },
   {
     nombre: "Archivo multimedia",
