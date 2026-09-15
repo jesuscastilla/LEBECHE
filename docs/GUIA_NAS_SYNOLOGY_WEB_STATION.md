@@ -177,8 +177,8 @@ Para que el panel pueda guardar, la carpeta `data/` debe ser **escribible por PH
 ## Resumen de rutas
 
 - **Web en el NAS:** `/volume1/web/lebeche/`
-- **URL pública (subcarpeta):** `https://pelotxo.synology.me/lebeche/`
-- **Panel Staff:** `https://pelotxo.synology.me/lebeche/admin/`
-- **Barrioteca (ya publicada):** `https://pelotxo.synology.me/barrioteca/`
+- **URL pública:** `https://corrientelebeche.es/lebeche/`
+- **Panel Staff:** `https://corrientelebeche.es/lebeche/admin/`
+- **Barrioteca (ya publicada):** `https://corrientelebeche.es/barrioteca/`
 - **SSH al NAS:** `192.168.50.93` (o `192.168.50.94`), puerto **22**
 - **Archivos del NAS (SMB):** `\\192.168.50.94\`

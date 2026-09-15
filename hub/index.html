@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Corriente Lebeche · Proyectos</title>
+<meta name="description" content="Índice de proyectos digitales de la Asociación Lebeche (Salobreña): web oficial, Barrioteca Acalencá, SLiMS y más.">
+<meta name="theme-color" content="#072B3C">
+<link rel="canonical" href="https://corrientelebeche.es/">
+<style>
+  :root {
+    --azul: #072B3C;
+    --celeste: #8FD6EF;
+    --ambar: #E8A33D;
+    --fondo: #F5F5F0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--fondo);
+    color: var(--azul);
+    line-height: 1.55;
+  }
+  header {
+    background: var(--azul);
+    color: #fff;
+    padding: 2.5rem 1rem 2rem;
+    text-align: center;
+  }
+  header .logo { font-size: 2.4rem; }
+  header h1 { margin: .5rem 0 0; font-size: 1.7rem; }
+  header p { margin: .4rem 0 0; color: var(--celeste); }
+  main { max-width: 900px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+  .intro { color: #345; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .card {
+    display: block;
+    background: #fff;
+    border: 1px solid #e2e6ea;
+    border-top: 4px solid var(--celeste);
+    border-radius: 12px;
+    padding: 1.25rem 1.25rem 1.4rem;
+    text-decoration: none;
+    color: var(--azul);
+    box-shadow: 0 2px 8px rgba(7,43,60,.06);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(7,43,60,.12); }
+  .card .emoji { font-size: 1.6rem; }
+  .card h2 { margin: .6rem 0 .3rem; font-size: 1.15rem; }
+  .card p { margin: 0; font-size: .92rem; color: #456; }
+  .card .estado {
+    display: inline-block;
+    margin-top: .7rem;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    color: var(--ambar);
+  }
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: .85rem;
+    color: #678;
+    border-top: 1px solid #e2e6ea;
+  }
+  footer a { color: var(--azul); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">🌊</div>
+    <h1>Lebeche</h1>
+    <p>Asociación cultural y vecinal de Salobreña</p>
+  </header>
+
+  <main>
+    <p class="intro">Proyectos digitales de la asociación, todos hechos en casa, sin publicidad y con los datos en Salobreña.</p>
+
+    <div class="grid">
+      <a class="card" href="/lebeche/">
+        <span class="emoji">🌊</span>
+        <h2>Web oficial de Lebeche</h2>
+        <p>Asociación, programación, noticias, aplicaciones, ubicación y contacto.</p>
+        <span class="estado">ACTIVA</span>
+      </a>
+
+      <a class="card" href="/barrioteca/">
+        <span class="emoji">📚</span>
+        <h2>Barrioteca Acalencá</h2>
+        <p>Biblioteca vecinal autogestionada: catálogo, préstamos y devoluciones.</p>
+        <span class="estado">ACTIVA</span>
+      </a>
+
+      <a class="card" href="/slims/">
+        <span class="emoji">🗂️</span>
+        <h2>SLiMS</h2>
+        <p>Sistema de gestión bibliotecaria (backend de la Barrioteca).</p>
+        <span class="estado">ACTIVA</span>
+      </a>
+
+      <a class="card" href="/portfolio/">
+        <span class="emoji">🧑‍💻</span>
+        <h2>Portfolio de Pelotxo</h2>
+        <p>Currículum y proyectos de desarrollo de software.</p>
+        <span class="estado">PRÓXIMAMENTE</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© Lebeche · Software libre (GPL-3.0) · Diseño y desarrollo: <a href="/portfolio/">Pelotxo</a></p>
+  </footer>
+</body>
+</html>

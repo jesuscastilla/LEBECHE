@@ -4,7 +4,7 @@ Sitio web de la **Asociación Lebeche**, asociación cultural y vecinal de Salob
 y el índice de los proyectos digitales que impulsa.
 
 > Infraestructura: NAS Synology con Web Station (Nginx + PHP 8 + MariaDB).
-> Dominio público: `lebeche.pelotxo.synology.me`.
+> Dominio público: `https://corrientelebeche.es/lebeche/` (dominio paraguas `corrientelebeche.es`; ver `docs/GUIA_DOMINIO_CORRIENTELEBECHE.md`).
 > Logos en `G:\GITHUB\LOGOS\`.
 > SSH al NAS: `192.168.50.93` (o `192.168.50.94`), puerto 22 · Archivos SMB: `\\192.168.50.94\`.
 
