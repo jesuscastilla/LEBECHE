@@ -11,6 +11,7 @@ window.PROGRAMACION_LEBECHE = {
     {
       fecha: "2026-09-18",
       hora: "18:00",
+      horaFin: "20:00",
       titulo: "Taller de escritura creativa",
       etiqueta: "Taller",
       texto: "Un espacio para escribir, compartir relatos y pasar un buen rato en compañía."
@@ -18,6 +19,7 @@ window.PROGRAMACION_LEBECHE = {
     {
       fecha: "2026-09-25",
       hora: "11:00",
+      horaFin: "13:00",
       titulo: "Mercadillo de intercambio",
       etiqueta: "Actividad",
       texto: "Trae cosas que ya no uses y llévate otras que te sirvan. Reutilizar es cuidar."
@@ -25,6 +27,7 @@ window.PROGRAMACION_LEBECHE = {
     {
       fecha: "2026-10-02",
       hora: "19:00",
+      horaFin: "21:00",
       titulo: "Cineclub en la Acalencá",
       etiqueta: "Proyección",
       texto: "Proyección y coloquio abiertos a todas las vecinas."

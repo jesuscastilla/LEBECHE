@@ -4,7 +4,7 @@ Sitio web de la **Asociación Lebeche**, asociación cultural y vecinal de Salob
 y el índice de los proyectos digitales que impulsa.
 
 > Infraestructura: NAS Synology con Web Station (Nginx + PHP 8 + MariaDB).
-> Dominio público: `https://corrientelebeche.es/lebeche/` (dominio paraguas `corrientelebeche.es`; ver `docs/GUIA_DOMINIO_CORRIENTELEBECHE.md`).
+> Dominio público: `https://www.corrientelebeche.es/lebeche/` (dominio paraguas `corrientelebeche.es`; ver `docs/GUIA_DOMINIO_CORRIENTELEBECHE.md`).
 > Logos en `G:\GITHUB\LOGOS\`.
 > SSH al NAS: `192.168.50.93` (o `192.168.50.94`), puerto 22 · Archivos SMB: `\\192.168.50.94\`.
 
@@ -14,7 +14,8 @@ y el índice de los proyectos digitales que impulsa.
 
 Web estática (HTML + CSS + JavaScript puro, sin frameworks ni CDN de scripts) con el tema visual
 de la Barrioteca y la identidad de Lebeche. Secciones: asociación, programación, noticias,
-aplicaciones, Barrioteca Acalencá, ubicación y contacto.
+aplicaciones, Barrioteca Acalencá, ubicación y contacto. Cada evento de la programación puede
+añadirse al calendario del móvil/ordenador (descarga `.ics` o enlace a Google Calendar).
 
 ### Cómo editar sin saber código
 
@@ -101,15 +102,6 @@ código de barras.
 
 - **URL pública:** `https://pelotxo.synology.me/barrioteca/`
 - **Acceso sin app**: la web (PWA) sigue siendo la vía principal para quien no usa smartphone y para iOS.
-
----
-
-## Digitalización Lebeche — Web hub informativo
-
-- **Tipo:** web estática (HTML + CSS + JS, sin CDN)
-- **Repositorio local:** `g:\GITHUB\LEBECHE\` (web oficial; la carpeta `digitalizacion-lebeche\` ya no está en local)
-- **Descripción:** presenta a las socias y vecinas las aplicaciones de la asociación.
-- **Identidad:** paleta azul Lebeche `#8FD6EF` + acento ámbar `#E8A33D`.
 
 ---
 

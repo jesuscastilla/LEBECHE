@@ -139,6 +139,129 @@
     (apps || []).forEach(function (app) { lista.appendChild(crearApp(app)); });
   }
 
+  // ---- Añadir al calendario (iCalendar) ----
+  var VTIMEZONE_MADRID = [
+    "BEGIN:VTIMEZONE",
+    "TZID:Europe/Madrid",
+    "BEGIN:STANDARD",
+    "DTSTART:19701025T030000",
+    "TZOFFSETFROM:+0200",
+    "TZOFFSETTO:+0100",
+    "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU",
+    "TZNAME:CET",
+    "END:STANDARD",
+    "BEGIN:DAYLIGHT",
+    "DTSTART:19700329T020000",
+    "TZOFFSETFROM:+0100",
+    "TZOFFSETTO:+0200",
+    "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU",
+    "TZNAME:CEST",
+    "END:DAYLIGHT",
+    "END:VTIMEZONE"
+  ].join("\r\n");
+
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+
+  function icsEscapar(t) {
+    return String(t == null ? "" : t)
+      .replace(/\\/g, "\\\\")
+      .replace(/\r?\n/g, "\\n")
+      .replace(/;/g, "\\;")
+      .replace(/,/g, "\\,");
+  }
+
+  function ubicacionEvento(e) {
+    var lug = e && e.lugar && String(e.lugar).trim();
+    if (lug) return lug;
+    var d = window._lebecheDatos || window.DATOS_LEBECHE || {};
+    var u = d.ubicacion || {};
+    return [u.direccion, u.cp ? (u.cp + " " + u.localidad) : u.localidad, u.provincia, u.pais]
+      .filter(Boolean).join(", ");
+  }
+
+  function icsFechaYHora(e) {
+    var fecha = String(e.fecha || "").replace(/-/g, "");
+    function fmt(d) { return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + "T" + pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + "00"; }
+    function fmtD(d) { return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()); }
+    if (e.hora) {
+      var p = String(e.hora).split(":");
+      var h = parseInt(p[0] || "0", 10), m = parseInt(p[1] || "0", 10);
+      var y = parseInt(fecha.slice(0, 4), 10), mo = parseInt(fecha.slice(4, 6), 10) - 1, dia = parseInt(fecha.slice(6, 8), 10);
+      var base = new Date(Date.UTC(y, mo, dia, h, m));
+      var fin;
+      if (e.horaFin) {
+        var pf = String(e.horaFin).split(":");
+        var hf = parseInt(pf[0] || "0", 10), mf = parseInt(pf[1] || "0", 10);
+        fin = new Date(Date.UTC(y, mo, dia, hf, mf));
+      } else {
+        fin = new Date(base.getTime() + 2 * 3600000);
+      }
+      return { start: fmt(base), end: fmt(fin), allDay: false };
+    }
+    var y2 = parseInt(fecha.slice(0, 4), 10), mo2 = parseInt(fecha.slice(4, 6), 10) - 1, dia2 = parseInt(fecha.slice(6, 8), 10);
+    var sig = new Date(Date.UTC(y2, mo2, dia2 + 1));
+    return { start: fecha, end: fmtD(sig), allDay: true };
+  }
+
+  function icsDtstamp() {
+    var n = new Date();
+    return n.getUTCFullYear() + pad2(n.getUTCMonth() + 1) + pad2(n.getUTCDate()) + "T" + pad2(n.getUTCHours()) + pad2(n.getUTCMinutes()) + pad2(n.getUTCSeconds()) + "Z";
+  }
+
+  function crearICS(e) {
+    var f = icsFechaYHora(e);
+    var lugar = ubicacionEvento(e);
+    var uid = "lebeche-" + String(e.fecha || "") + "-" +
+      (e.titulo || "evento").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) +
+      "@corrientelebeche.es";
+    var l = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Lebeche//Programacion//ES",
+      "CALSCALE:GREGORIAN",
+      "METHOD:PUBLISH",
+      VTIMEZONE_MADRID,
+      "BEGIN:VEVENT",
+      "UID:" + uid,
+      "DTSTAMP:" + icsDtstamp()
+    ];
+    if (f.allDay) {
+      l.push("DTSTART;VALUE=DATE:" + f.start);
+      l.push("DTEND;VALUE=DATE:" + f.end);
+    } else {
+      l.push("DTSTART;TZID=Europe/Madrid:" + f.start);
+      l.push("DTEND;TZID=Europe/Madrid:" + f.end);
+    }
+    l.push("SUMMARY:" + icsEscapar(e.titulo || "Evento Lebeche"));
+    l.push("DESCRIPTION:" + icsEscapar((e.texto || "") + (e.etiqueta ? " · " + e.etiqueta : "") + " · Lebeche · https://www.corrientelebeche.es/lebeche/#programacion"));
+    if (lugar) l.push("LOCATION:" + icsEscapar(lugar));
+    l.push("URL:https://www.corrientelebeche.es/lebeche/#programacion");
+    l.push("END:VEVENT");
+    l.push("END:VCALENDAR");
+    return l.join("\r\n");
+  }
+
+  function nombreICS(e) {
+    var s = (e.titulo || "evento").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    return (s || "evento") + ".ics";
+  }
+
+  function crearEnlaceICS(e) {
+    return "data:text/calendar;charset=utf-8," + encodeURIComponent(crearICS(e));
+  }
+
+  function urlGoogleCalendar(e) {
+    var f = icsFechaYHora(e);
+    var lugar = ubicacionEvento(e);
+    var u = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent(e.titulo || "Evento Lebeche")
+      + "&dates=" + encodeURIComponent(f.start + "/" + f.end)
+      + "&details=" + encodeURIComponent((e.texto || "") + " · Lebeche");
+    if (lugar) u += "&location=" + encodeURIComponent(lugar);
+    u += "&ctz=" + encodeURIComponent("Europe/Madrid");
+    return u;
+  }
+
   // ---- Programación ----
   function crearEvento(e) {
     var art = crear("article", "evento");
@@ -160,7 +283,7 @@
     }
     if (e.hora) {
       var hora = crear("span", "evento__hora");
-      hora.textContent = e.hora;
+      hora.textContent = e.horaFin ? (e.hora + " – " + e.horaFin) : e.hora;
       meta.appendChild(hora);
     }
     var titulo = crear("h3", "evento__titulo");
@@ -168,9 +291,23 @@
     var texto = crear("p", "evento__texto");
     texto.textContent = e.texto;
 
+    var acciones = crear("div", "evento__acciones");
+    var btnCal = crear("a", "evento__calendario");
+    btnCal.href = crearEnlaceICS(e);
+    btnCal.download = nombreICS(e);
+    btnCal.textContent = "📅 Añadir al calendario";
+    acciones.appendChild(btnCal);
+    var btnGoogle = crear("a", "evento__google");
+    btnGoogle.href = urlGoogleCalendar(e);
+    btnGoogle.target = "_blank";
+    btnGoogle.rel = "noopener";
+    btnGoogle.textContent = "Google Calendar";
+    acciones.appendChild(btnGoogle);
+
     cuerpo.appendChild(meta);
     cuerpo.appendChild(titulo);
     cuerpo.appendChild(texto);
+    cuerpo.appendChild(acciones);
     art.appendChild(fecha);
     art.appendChild(cuerpo);
     return art;
@@ -275,6 +412,7 @@
     cargar("apps", window.APPS_LEBECHE || []),
     cargar("datos", window.DATOS_LEBECHE || {})
   ]).then(function (r) {
+    window._lebecheDatos = r[3] || window.DATOS_LEBECHE || {};
     renderProgramacion(r[0]);
     renderNoticias(r[1]);
     renderApps(r[2]);

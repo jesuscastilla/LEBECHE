@@ -147,9 +147,11 @@
     var f = fila();
     f.appendChild(campo("Fecha", input("date", "campo__control fila__fecha", ev.fecha || "")));
     f.appendChild(campo("Hora", input("time", "campo__control fila__hora", ev.hora || "")));
+    f.appendChild(campo("Hora fin", input("time", "campo__control fila__horaFin", ev.horaFin || "")));
     f.appendChild(campo("Título", input("text", "campo__control fila__titulo fila--ancha", ev.titulo || "", "Título")));
     f.appendChild(campo("Etiqueta", input("text", "campo__control fila__etiqueta", ev.etiqueta || "", "Taller, Actividad…")));
     f.appendChild(campo("Descripción", input("text", "campo__control fila__texto fila--ancha", ev.texto || "", "Descripción")));
+    f.appendChild(campo("Lugar", input("text", "campo__control fila__lugar fila--ancha", ev.lugar || "", "Espacio vecinal Acalencá, Salobreña")));
     f.appendChild(botonQuitar());
     return f;
   }
@@ -164,11 +166,13 @@
     cont.querySelectorAll(".fila").forEach(function (f) {
       var fecha = f.querySelector(".fila__fecha").value;
       var hora = f.querySelector(".fila__hora").value;
+      var horaFin = f.querySelector(".fila__horaFin").value;
       var titulo = f.querySelector(".fila__titulo").value;
       var etiqueta = f.querySelector(".fila__etiqueta").value;
       var texto = f.querySelector(".fila__texto").value;
+      var lugar = f.querySelector(".fila__lugar").value;
       if (fecha || titulo) {
-        proximos.push({ fecha: fecha, hora: hora, titulo: titulo, etiqueta: etiqueta, texto: texto });
+        proximos.push({ fecha: fecha, hora: hora, horaFin: horaFin, titulo: titulo, etiqueta: etiqueta, texto: texto, lugar: lugar });
       }
     });
     return { viernes: viernes, proximos: proximos };

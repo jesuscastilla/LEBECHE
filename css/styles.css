@@ -173,6 +173,11 @@ h1,h2,h3,h4{font-family:var(--fuente-titulos);line-height:1.15;font-weight:700;c
 .evento__hora{font-size:.85rem;font-weight:700;color:var(--ambar-oscuro);font-variant-numeric:tabular-nums}
 .evento__titulo{font-size:1.25rem}
 .evento__texto{color:var(--tinta-suave);font-size:.95rem}
+.evento__acciones{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+.evento__calendario{display:inline-flex;align-items:center;font-size:.82rem;font-weight:700;color:var(--azul-profundo);background:var(--azul-claro);padding:8px 15px;border-radius:999px;transition:background .2s ease,transform .2s ease,color .2s ease}
+.evento__calendario:hover{background:var(--azul);transform:translateY(-1px);color:var(--azul-noche)}
+.evento__google{font-size:.82rem;font-weight:700;color:var(--ambar-oscuro)}
+.evento__google:hover{color:var(--ambar)}
 .programacion__vacia{background:var(--blanco);border:1px dashed var(--borde);border-radius:var(--radio-xl);padding:32px;text-align:center;color:var(--tinta-suave)}
 
 /* Pie */
