@@ -100,7 +100,7 @@ código de barras.
 | Android | Kotlin + Jetpack Compose (nativa) | `g:\GITHUB\barrioteca-android-app-v2\` | activa |
 | iOS | Swift | `g:\GITHUB\barrioteca-ios\` | activa |
 
-- **URL pública:** `https://pelotxo.synology.me/barrioteca/`
+- **URL pública:** `https://www.corrientelebeche.es/barrioteca/`
 - **Acceso sin app**: la web (PWA) sigue siendo la vía principal para quien no usa smartphone y para iOS.
 
 ---

@@ -9,7 +9,7 @@ window.APPS_LEBECHE = [
     emoji: "📚",
     descripcion: "La biblioteca vecinal autogestionada: consulta el catálogo, llévate libros en préstamo y devuélvelos escaneando su código con el móvil.",
     estado: "activa",
-    url: "https://pelotxo.synology.me/barrioteca/",
+    url: "https://www.corrientelebeche.es/barrioteca/",
     etiquetas: ["Web", "iPhone/iPad"]
   },
   {

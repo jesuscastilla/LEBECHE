@@ -46,7 +46,7 @@ No subas `docs/`, `.git/`, `README.md` ni `.gitignore`: no se usan para servir l
 La raíz web por defecto de Synology es `/volume1/web/`. Si subes la web a una subcarpeta:
 
 - Destino: `/volume1/web/lebeche/`
-- URL pública: `https://pelotxo.synology.me/lebeche/`
+- URL pública: `https://www.corrientelebeche.es/lebeche/`
 
 Con esta opción **no hace falta crear nada** en Web Station: la carpeta se sirve sola.
 
@@ -104,7 +104,7 @@ scp -r index.html css js assets pelotxo@192.168.50.93:/volume1/web/lebeche/
 
 ## 8. Paso 6 — Comprobar
 
-1. Abre `https://pelotxo.synology.me/lebeche/` en el navegador.
+1. Abre `https://www.corrientelebeche.es/lebeche/` en el navegador.
 2. Revisa en **móvil** y en **escritorio**:
    - El menú móvil se abre y cierra.
    - Las noticias, aplicaciones, ubicación y contacto se ven bien.
@@ -139,7 +139,7 @@ Para publicar cambios:
 Permite editar **programación, noticias, apps y contacto/ubicación** desde el navegador, sin tocar
 código.
 
-- **URL:** `https://pelotxo.synology.me/lebeche/admin/`
+- **URL:** `https://www.corrientelebeche.es/lebeche/admin/`
 - **Usuario:** `lebeche`
 - **Contraseña:** la configurada en `admin/config.php` (ver "Cambiar la contraseña").
 
