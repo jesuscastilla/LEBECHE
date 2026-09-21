@@ -113,6 +113,11 @@
   document.querySelectorAll("[data-save]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var tipo = btn.getAttribute("data-save");
+      var problemas = marcarCampos(tipo);
+      if (problemas.length) {
+        estado("Revisa antes de guardar: " + problemas.join(" · "), false);
+        return;
+      }
       var data = null;
       if (tipo === "programacion") data = recogerProgramacion();
       else if (tipo === "noticias") data = recogerNoticias();
@@ -121,6 +126,34 @@
       if (data !== null) guardar(tipo, data);
     });
   });
+
+  function marcarCampos(tipo) {
+    var problemas = [];
+    var panelId = tipo === "noticias" ? "form-noticias" : "form-programacion";
+    var panel = document.getElementById(panelId);
+    if (!panel) return problemas;
+    var etiqueta = tipo === "noticias" ? "noticia" : "actividad";
+
+    panel.querySelectorAll(".fila").forEach(function (f, idx) {
+      f.classList.remove("fila--error");
+      var campoFecha = f.querySelector(".fila__fecha");
+      var campoTitulo = f.querySelector(".fila__titulo");
+      var fecha = campoFecha ? campoFecha.value.trim() : "";
+      var titulo = campoTitulo ? campoTitulo.value.trim() : "";
+
+      if (!fecha && !titulo) return;
+
+      var faltan = [];
+      if (!fecha) faltan.push("fecha");
+      if (!titulo) faltan.push("título");
+
+      if (faltan.length) {
+        f.classList.add("fila--error");
+        problemas.push(etiqueta + " " + (idx + 1) + ": falta " + faltan.join(" y "));
+      }
+    });
+    return problemas;
+  }
 
   // ---- Programación ----
   function renderProgramacion() {

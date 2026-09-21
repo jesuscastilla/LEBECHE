@@ -36,6 +36,26 @@ if (json_last_error() !== JSON_ERROR_NONE) {
   exit;
 }
 
+if ($tipo === 'noticias' && is_array($decoded)) {
+    foreach ($decoded as $i => $n) {
+        if (empty($n['fecha'])) {
+            http_response_code(400);
+            echo 'No se guardó: la noticia ' . ($i + 1) . ' no tiene fecha.';
+            exit;
+        }
+    }
+}
+if ($tipo === 'programacion' && is_array($decoded) && !empty($decoded['proximos'])) {
+    foreach ($decoded['proximos'] as $i => $e) {
+        if (empty($e['fecha'])) {
+            http_response_code(400);
+            echo 'No se guardó: el evento ' . ($i + 1) . ' no tiene fecha.';
+            exit;
+        }
+    }
+}
+
+
 if (!is_dir(DATA_DIR)) {
   @mkdir(DATA_DIR, 0775, true);
 }

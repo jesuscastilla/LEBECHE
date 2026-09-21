@@ -48,6 +48,18 @@
   var formatoDia = new Intl.DateTimeFormat("es-ES", { day: "numeric" });
   var formatoMes = new Intl.DateTimeFormat("es-ES", { month: "short" });
 
+  // Utilidades de fecha seguras: nunca lanzan con fechas vacías o incorrectas
+  function fechaValida(valor) {
+    if (!valor) return null;
+    var d = new Date(valor);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function formatearFecha(valor, formateador, porDefecto) {
+    var d = fechaValida(valor);
+    return d ? formateador.format(d) : (porDefecto || "");
+  }
+
   // ---- Noticias ----
   function crearNoticia(n) {
     var tarjeta = crear("article", "noticia" + (n.destacada ? " noticia--destacada" : ""));
@@ -57,19 +69,21 @@
     var etiqueta = crear("span", "noticia__etiqueta");
     etiqueta.textContent = n.categoria || "Lebeche";
     var fecha = crear("time", "noticia__fecha");
-    fecha.textContent = formatoFecha.format(new Date(n.fecha));
-    fecha.setAttribute("datetime", n.fecha);
+    fecha.textContent = formatearFecha(n.fecha, formatoFecha, "Fecha por confirmar");
+    if (fechaValida(n.fecha)) fecha.setAttribute("datetime", n.fecha);
     meta.appendChild(etiqueta);
     meta.appendChild(fecha);
 
     var titulo = crear("h3", "noticia__titulo");
-    titulo.textContent = n.titulo;
-    var texto = crear("p", "noticia__texto");
-    texto.textContent = n.texto;
-
+    titulo.textContent = n.titulo || n.categoria || "Noticia";
     cuerpo.appendChild(meta);
     cuerpo.appendChild(titulo);
-    cuerpo.appendChild(texto);
+
+    if (n.texto) {
+      var texto = crear("p", "noticia__texto");
+      texto.textContent = n.texto;
+      cuerpo.appendChild(texto);
+    }
     tarjeta.appendChild(cuerpo);
     return tarjeta;
   }
@@ -81,7 +95,11 @@
     var datos = (noticias || []).slice();
     datos.sort(function (a, b) {
       if (!!a.destacada !== !!b.destacada) return (b.destacada ? 1 : 0) - (a.destacada ? 1 : 0);
-      return new Date(b.fecha) - new Date(a.fecha);
+      var da = fechaValida(a.fecha), db = fechaValida(b.fecha);
+      if (!da && !db) return 0;
+      if (!da) return 1;
+      if (!db) return -1;
+      return db - da;
     });
     datos.forEach(function (n) { lista.appendChild(crearNoticia(n)); });
   }
@@ -266,11 +284,18 @@
   function crearEvento(e) {
     var art = crear("article", "evento");
 
+    var fechaEv = fechaValida(e.fecha);
+
     var fecha = crear("div", "evento__fecha");
     var dia = crear("span", "evento__dia");
-    dia.textContent = formatoDia.format(new Date(e.fecha));
     var mes = crear("span", "evento__mes");
-    mes.textContent = formatoMes.format(new Date(e.fecha));
+    if (fechaEv) {
+      dia.textContent = formatoDia.format(fechaEv);
+      mes.textContent = formatoMes.format(fechaEv);
+    } else {
+      dia.textContent = "…";
+      mes.textContent = "Por confirmar";
+    }
     fecha.appendChild(dia);
     fecha.appendChild(mes);
 
@@ -287,27 +312,32 @@
       meta.appendChild(hora);
     }
     var titulo = crear("h3", "evento__titulo");
-    titulo.textContent = e.titulo;
-    var texto = crear("p", "evento__texto");
-    texto.textContent = e.texto;
-
-    var acciones = crear("div", "evento__acciones");
-    var btnCal = crear("a", "evento__calendario");
-    btnCal.href = crearEnlaceICS(e);
-    btnCal.download = nombreICS(e);
-    btnCal.textContent = "📅 Añadir al calendario";
-    acciones.appendChild(btnCal);
-    var btnGoogle = crear("a", "evento__google");
-    btnGoogle.href = urlGoogleCalendar(e);
-    btnGoogle.target = "_blank";
-    btnGoogle.rel = "noopener";
-    btnGoogle.textContent = "Google Calendar";
-    acciones.appendChild(btnGoogle);
-
+    titulo.textContent = e.titulo || e.etiqueta || "Evento";
     cuerpo.appendChild(meta);
     cuerpo.appendChild(titulo);
-    cuerpo.appendChild(texto);
-    cuerpo.appendChild(acciones);
+
+    if (e.texto) {
+      var texto = crear("p", "evento__texto");
+      texto.textContent = e.texto;
+      cuerpo.appendChild(texto);
+    }
+
+    if (fechaEv) {
+      var acciones = crear("div", "evento__acciones");
+      var btnCal = crear("a", "evento__calendario");
+      btnCal.href = crearEnlaceICS(e);
+      btnCal.download = nombreICS(e);
+      btnCal.textContent = "📅 Añadir al calendario";
+      acciones.appendChild(btnCal);
+      var btnGoogle = crear("a", "evento__google");
+      btnGoogle.href = urlGoogleCalendar(e);
+      btnGoogle.target = "_blank";
+      btnGoogle.rel = "noopener";
+      btnGoogle.textContent = "Google Calendar";
+      acciones.appendChild(btnGoogle);
+      cuerpo.appendChild(acciones);
+    }
+
     art.appendChild(fecha);
     art.appendChild(cuerpo);
     return art;
@@ -328,18 +358,29 @@
     var hoy = new Date();
     hoy.setHours(0, 0, 0, 0);
 
-    var proximos = eventos
-      .filter(function (e) { return new Date(e.fecha) >= hoy; })
-      .sort(function (a, b) { return new Date(a.fecha) - new Date(b.fecha); });
+    // Se separan los eventos con fecha válida y futura de los que vienen sin
+    // fecha: éstos últimos se muestran al final con la etiqueta "Por confirmar"
+    // en lugar de desaparecer sin aviso.
+    var proximos = [];
+    var porConfirmar = [];
+    eventos.forEach(function (e) {
+      var d = fechaValida(e.fecha);
+      if (d && d >= hoy) proximos.push(e);
+      else if (!d && (e.titulo || e.etiqueta || e.texto)) porConfirmar.push(e);
+    });
 
-    if (!proximos.length) {
+    proximos.sort(function (a, b) { return fechaValida(a.fecha) - fechaValida(b.fecha); });
+
+    var visibles = proximos.concat(porConfirmar);
+
+    if (!visibles.length) {
       var vacio = crear("div", "programacion__vacia");
       vacio.textContent = "Próximamente publicaremos la programación.";
       lista.appendChild(vacio);
       return;
     }
 
-    proximos.forEach(function (e) { lista.appendChild(crearEvento(e)); });
+    visibles.forEach(function (e) { lista.appendChild(crearEvento(e)); });
   }
 
   // ---- Contacto y ubicación ----
@@ -413,10 +454,21 @@
     cargar("datos", window.DATOS_LEBECHE || {})
   ]).then(function (r) {
     window._lebecheDatos = r[3] || window.DATOS_LEBECHE || {};
-    renderProgramacion(r[0]);
-    renderNoticias(r[1]);
-    renderApps(r[2]);
-    renderContactoUbicacion(r[3]);
+
+    // Cada sección se pinta de forma aislada para que un contenido con un dato
+    // incorrecto no pueda dejar en blanco el resto de la página.
+    [
+      [renderProgramacion, r[0]],
+      [renderNoticias, r[1]],
+      [renderApps, r[2]],
+      [renderContactoUbicacion, r[3]]
+    ].forEach(function (par) {
+      try {
+        par[0](par[1]);
+      } catch (e) {
+        console.error("[Lebeche] Error al renderizar una sección:", e);
+      }
+    });
   });
 
   // ---- Año actual en el pie ----

@@ -73,6 +73,7 @@ textarea.campo__control{min-height:84px;resize:vertical}
 .fila{display:grid;gap:10px;grid-template-columns:1fr;background:var(--blanco);border:1px solid var(--borde);border-radius:14px;padding:14px;margin-bottom:12px}
 .fila .campo__control{width:100%}
 .fila .btn--quitar{justify-self:start}
+.fila--error{border:2px solid var(--rojo);background:#FDF3F3}
 
 /* Noticias y apps con varias columnas en pantalla ancha */
 @media (min-width:640px){
