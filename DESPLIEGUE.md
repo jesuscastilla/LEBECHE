@@ -40,6 +40,8 @@ usa `scp` con el usuario `pelotxo`.
 
 ## Opción B — Manual (Explorador de Windows / SMB)
 
+> **Tipografías (2026-09-24):** la web ahora usa `fonts/` (9 .ttf de marca). Si subes a mano, arrastra también la carpeta `fonts/` completa junto a `css/` y `assets/`.
+
 1. Abre `\\192.168.50.94\web\lebeche\` en el Explorador.
 2. Arrastra (sobrescribiendo):
    - `js\main.js`

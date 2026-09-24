@@ -53,6 +53,15 @@ $archivosTodo = @(
     "assets\favicon-32.png",
     "assets\lebeche-logo-azul.png",
     "assets\lebeche-logo-oscuro.png",
+    "fonts\Courgette-Regular.ttf",
+    "fonts\Garet-Book.ttf",
+    "fonts\Garet-Heavy.ttf",
+    "fonts\OpenSans-Regular.ttf",
+    "fonts\OpenSans-Italic.ttf",
+    "fonts\OpenSans-Semibold.ttf",
+    "fonts\OpenSans-Bold.ttf",
+    "fonts\OpenSans-BoldItalic.ttf",
+    "fonts\OpenSans-ExtraBold.ttf",
     "admin\admin.js",
     "admin\estilos.css",
     "admin\guardar.php",
@@ -119,6 +128,13 @@ if ($ConDatos -and $BackupDatos) {
 
 # --- Subida -----------------------------------------------------------------
 Write-Host "`nSubiendo $($lista.Count) archivo(s)..." -ForegroundColor Cyan
+
+# Asegurar la carpeta fonts/ en el destino (tipografías de marca, añadida 2026-09-24)
+if ($usarSmb) {
+    New-Item -ItemType Directory -Path (Join-Path $smbRaiz "fonts") -Force | Out-Null
+} else {
+    & ssh "$($NasUser)@$($NasIp)" "mkdir -p $destinoScp/fonts"
+}
 
 foreach ($rel in $lista) {
     $src = Join-Path $raizRepo $rel
