@@ -386,9 +386,12 @@
   // ---- Contacto y ubicación ----
   function crearContacto(c) {
     var tarjeta = crear("a", "contacto__tarjeta");
+    var esCorreo = /^mailto:/i.test(c.url || "");
     tarjeta.href = c.url || "#";
-    tarjeta.target = "_blank";
-    tarjeta.rel = "noopener";
+    if (!esCorreo) {
+      tarjeta.target = "_blank";
+      tarjeta.rel = "noopener";
+    }
 
     var icono = crear("span", "contacto__icono");
     icono.textContent = c.icono || "🔗";

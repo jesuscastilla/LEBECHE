@@ -13,9 +13,16 @@ window.DATOS_LEBECHE = {
     cp: "18680",
     pais: "España",
     consultaMapa: "Calle Santa Cruz 8, 18680 Salobreña, Granada, España",
-    nota: "La Barrioteca Acalencá se encuentra en el espacio vecinal de la Acalencá, en Salobreña."
+    nota: ""
   },
   contacto: [
+    {
+      icono: "✉️",
+      nombre: "Correo electrónico de la asociación",
+      valor: "monderas@corrientelebeche.es",
+      url: "mailto:monderas@corrientelebeche.es",
+      desc: "Escríbenos un correo para cualquier consulta."
+    },
     {
       icono: "📸",
       nombre: "Instagram de la asociación",
@@ -25,10 +32,17 @@ window.DATOS_LEBECHE = {
     },
     {
       icono: "🏘️",
-      nombre: "Espacio vecinal La Acalencá",
+      nombre: "Espacio vecinal Acalencá",
       valor: "@acalenca",
       url: "https://www.instagram.com/acalenca/",
       desc: "Nuestro espacio vecinal, donde también vive la Barrioteca."
+    },
+    {
+      icono: "📞",
+      nombre: "Whatsapp de la asociación",
+      valor: "+34 687 40 73 47",
+      url: "https://api.whatsapp.com/send?phone=34687407347",
+      desc: "¡Escríbenos por Whatsapp!"
     }
   ]
 };
