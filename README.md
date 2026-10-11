@@ -77,7 +77,7 @@ Aplicaciones y servicios digitales de la **Asociación Lebeche** (Salobreña, Gr
 
 - **Estado:** en desarrollo (v1)
 - **Tipo:** app Android nativa (Kotlin + Jetpack Compose)
-- **Repositorio (archivado):** https://github.com/jesuscastilla/calendario-lebeche
+- **Repositorio:** https://github.com/jesuscastilla/monderas-app (el calendario pasó a formar parte de Mondera's App)
 - **Package ID:** `com.lebeche.calendario`
 - **Descripción:** calendario que se conecta a servidores **CalDAV** (como **Synology
   Calendar**), permite crear/editar/ver eventos con **notificaciones**, sincronización
