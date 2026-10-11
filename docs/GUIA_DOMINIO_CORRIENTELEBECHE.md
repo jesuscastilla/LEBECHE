@@ -194,12 +194,12 @@ golpe (obligaría a publicar nuevas versiones). Migrar **añadiendo** el dominio
 
 | Archivo | Referencias |
 |---------|-------------|
-| `barrioteca-android-app-v2/app/src/main/java/com/lebeche/barrioteca/data/SlmsApi.kt` | `:97` api-proxy |
-| `barrioteca-android-app-v2/app/src/main/java/com/lebeche/barrioteca/data/Parsers.kt` | `:13`, `:40` imágenes |
+| `barrioteca-android/app/src/main/java/com/lebeche/barrioteca/data/SlmsApi.kt` | `:97` api-proxy |
+| `barrioteca-android/app/src/main/java/com/lebeche/barrioteca/data/Parsers.kt` | `:13`, `:40` imágenes |
 | `barrioteca-ios/Barrioteca/Barrioteca/ContentView.swift` | `:5-6` appURL/appHost |
-| `Portfolio-Pelotxo/index.html` | `:77`, `:117` enlaces en vivo |
-| `Portfolio-Pelotxo/index-en.html` | `:77`, `:117` |
-| `PWA/README.md`, `SLiMS/README.md`, `CONTEXT.md` | documentación |
+| `portfolio-pelotxo/index.html` | `:77`, `:117` enlaces en vivo |
+| `portfolio-pelotxo/index-en.html` | `:77`, `:117` |
+| `barrioteca-web/README.md`, `barrioteca-slims/README.md`, `CONTEXT.md` | documentación |
 
 > Regla del proyecto: "No hardcodear URLs de `pelotxo.synology.me` en el código".
 

@@ -4,7 +4,7 @@ Sitio web de la **Asociación Lebeche**, asociación cultural y vecinal de Salob
 y el índice de los proyectos digitales que impulsa.
 
 > Infraestructura: NAS Synology con Web Station (Nginx + PHP 8 + MariaDB).
-> Dominio público: `https://www.corrientelebeche.es/lebeche/` (dominio paraguas `corrientelebeche.es`; ver `docs/GUIA_DOMINIO_CORRIENTELEBECHE.md`).
+> Dominio público: `https://www.corrientelebeche.es/lebeche/` (dominio paraguas `corrientelebeche.es`; ver `docs/GUIA_DOMINIO_CORRIENTElebeche-web.md`).
 > Logos en `G:\GITHUB\LOGOS\`.
 > SSH al NAS: `192.168.50.93` (o `192.168.50.94`), puerto 22 · Archivos SMB: `\\192.168.50.94\`.
 
@@ -33,7 +33,7 @@ disponible, usa esos valores.
 ### Estructura
 
 ```
-LEBECHE/
+lebeche-web/
 ├── index.html                     # Página principal (secciones ancla)
 ├── css/styles.css                 # Estilos (tema Barrioteca + identidad Lebeche)
 ├── js/datos.js                    # Valores por defecto (dirección, redes, contacto)
@@ -77,7 +77,7 @@ Aplicaciones y servicios digitales de la **Asociación Lebeche** (Salobreña, Gr
 
 - **Estado:** en desarrollo (v1)
 - **Tipo:** app Android nativa (Kotlin + Jetpack Compose)
-- **Repositorio local:** `g:\GITHUB\calendario-lebeche\`
+- **Repositorio (archivado):** https://github.com/jesuscastilla/calendario-lebeche
 - **Package ID:** `com.lebeche.calendario`
 - **Descripción:** calendario que se conecta a servidores **CalDAV** (como **Synology
   Calendar**), permite crear/editar/ver eventos con **notificaciones**, sincronización
@@ -95,9 +95,9 @@ código de barras.
 
 | Entrega | Tecnología | Repositorio local | Estado |
 |---|---|---|---|
-| Web (PWA) | React 19 + Vite + Tailwind + TypeScript | `g:\GITHUB\PWA\` | activa |
-| Backend | SLiMS 9.7.2 (PHP + MariaDB) | `g:\GITHUB\SLiMS\` | activa |
-| Android | Kotlin + Jetpack Compose (nativa) | `g:\GITHUB\barrioteca-android-app-v2\` | activa |
+| Web (PWA) | React 19 + Vite + Tailwind + TypeScript | `g:\GITHUB\barrioteca-web\` | activa |
+| Backend | SLiMS 9.7.2 (PHP + MariaDB) | `g:\GITHUB\barrioteca-slims\` | activa |
+| Android | Kotlin + Jetpack Compose (nativa) | `g:\GITHUB\barrioteca-android\` | activa |
 | iOS | Swift | `g:\GITHUB\barrioteca-ios\` | activa |
 
 - **URL pública:** `https://www.corrientelebeche.es/barrioteca/`
