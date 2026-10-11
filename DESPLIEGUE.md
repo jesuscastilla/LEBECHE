@@ -18,7 +18,7 @@ Windows, la más fácil) o **SSH/SCP**. También existe un script que lo hace en
 En PowerShell:
 
 ```powershell
-cd G:\GITHUB\LEBECHE
+cd G:\GITHUB\lebeche-web
 
 # Subir solo los 4 archivos de código del arreglo (lo habitual):
 .\despliegue.ps1
