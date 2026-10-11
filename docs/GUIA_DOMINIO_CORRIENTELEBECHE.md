@@ -21,7 +21,7 @@ https://www.corrientelebeche.es/            → 301 → /lebeche/  (/volume1/web
 https://www.corrientelebeche.es/lebeche/    → web oficial de LEBECHE      (/volume1/web/lebeche/)
 https://www.corrientelebeche.es/barrioteca/ → PWA Barrioteca Acalencá     (/volume1/web/barrioteca/)
 https://www.corrientelebeche.es/slims/      → SLiMS (backend biblioteca)  (/volume1/web/slims/)
-https://www.corrientelebeche.es/portfolio/  → Portfolio de Pelotxo        (/volume1/web/portfolio/, pendiente de subir)
+https://jesuscastilla.github.io/portfolio-pelotxo/  → Portfolio de Pelotxo        (GitHub Pages)
 
 DNS: Cloudflare (autoritativo, proxied en apex/www) → CNAME a pelotxo.synology.me (DDNS, TTL 240 s)
      → NAS (Web Station/Nginx) por IPv4 79.112.15.97 e IPv6 2a0c:5a80:3a07:a00:9209:d0ff:fe99:60ca.
